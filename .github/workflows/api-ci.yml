@@ -9,7 +9,7 @@ on:
   push:
     paths:
       - "./api/**"
-      - ".github*workflows-api-ci.yml"
+      - ".github/workflows/api-ci.yml"
 
 #NUESTRO DIRECTORIO BASE PARA CORRER ES API
 defaults:
@@ -29,10 +29,10 @@ jobs:
           node-version: 18
           cache: 'npm'
           cache-dependency-path: ./api/package-lock.json
-      -name: install
+      - name: install
         shell: bash
         run: npm ci
-      -name: run unit test
+      - name: run unit test
         shell: bash
         run: npm run test
 #para hacer correr, hacemos commit y en github deberia aparecer nuestra prueba.
