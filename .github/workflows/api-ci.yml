@@ -1,0 +1,39 @@
+#NOMBRE, TODO EL CICLO DE INTEGRACION DE NUESTRO API
+name: API CI
+#CADA VEZ QUE SE HAGA UN COMMIT EN CUALQUIER RAMA, QUE CORRA ESE CICLO
+#on: [push]
+#ESO SI EL PROYECTO ES MONOREPO OSEA QUE SOLO TIENE EL REPO DE API O FRONT
+
+#COMO NUESTRO PORYECTO SON VARIOS PROYECTOS DENTRO DEL MISMO USAMOS ESTO
+on:
+  push:
+    paths:
+      - "./api/**"
+      - ".github*workflows-api-ci.yml"
+
+#NUESTRO DIRECTORIO BASE PARA CORRER ES API
+defaults:
+  run:
+    working-directory: ./api
+
+#ES LA FORMA EN QUE GITHUB AUTOMATIZA ** PARA QUE PUEDA CORRER EL COMANDO TEST, NECESITAMOS EL REPO, DEPENDENCIAS Y UNA MAQUINA CON NODE
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: ./api/package-lock.json
+      -name: install
+        shell: bash
+        run: npm ci
+      -name: run unit test
+        shell: bash
+        run: npm run test
+#para hacer correr, hacemos commit y en github deberia aparecer nuestra prueba
+
