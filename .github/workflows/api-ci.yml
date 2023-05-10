@@ -35,5 +35,5 @@ jobs:
       -name: run unit test
         shell: bash
         run: npm run test
-#para hacer correr, hacemos commit y en github deberia aparecer nuestra prueba
+#para hacer correr, hacemos commit y en github deberia aparecer nuestra prueba.
 
