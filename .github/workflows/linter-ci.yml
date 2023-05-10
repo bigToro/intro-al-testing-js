@@ -10,7 +10,7 @@ defaults:
     working-directory: ./api
 
 jobs:
-  unit-test:
+  static-test-linter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,7 +24,7 @@ jobs:
       - name: install
         shell: bash
         run: npm ci
-      - name: run unit test
+      - name: run linter
         shell: bash
         run: npm run lint
-
+#esto que hice tambien podia hacerlo en el anterior archivo de api-ci, simplemente añadiendo un job
